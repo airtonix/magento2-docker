@@ -1,0 +1,20 @@
+{
+    "name": "magento",
+    "scripts": {
+        "source": "npx npm-run-all clean:lock composer:install",
+        "env": "npx npm-run-all docker:build docker:up",
+        "clean": "npx npm-run-all --serial docker:down clean:generated",
+
+        "clean:lock": "npx rimraf ./src/composer.lock",
+        "clean:generated": "npx rimraf ./!(src|app)/!(.gitkeep|cron|composer.json|config.php)",
+        "clean:design": "npx rimraf ./src/app/design",
+        "clean:sql": "npx rimraf ./mysql",
+
+        "composer": "docker-compose -f ./docker-compose--build.yml run --rm composer",
+        "composer:install": "npm run composer -- install --no-progress",
+
+        "docker:down": "docker-compose down",
+        "docker:up": "docker-compose up",
+        "docker:build": "docker-compose build"
+    }
+}

@@ -1,0 +1,12 @@
+.DS_Store
+.vscode/
+
+mysql
+
+src/*
+
+!src/.gitkeep
+!src/cron
+!src/composer.json
+!src/app/etc/env.php
+!src/app/etc/config.php
